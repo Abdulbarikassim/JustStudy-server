@@ -54,7 +54,7 @@ async function update(req, res) {
   try {
     const db = getDB();
     const results = await db
-      .collection("Order")
+      .collection("lessons")
       .updateOne(
         { _id: new ObjectId(id) },
         { $set: updatedData },

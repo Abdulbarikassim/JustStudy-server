@@ -22,8 +22,8 @@ router.get("/lessons/:id", getALesson);
 // post a new order.
 router.post("/lessons/order", createOrder);
 
-// update an order.
+// update a lesson.
 
-router.put("/orders/:id", update);
+router.put("/lessons/:id", update);
 
 module.exports = router;
