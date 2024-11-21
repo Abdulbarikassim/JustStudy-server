@@ -1,13 +1,28 @@
+require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
-const connectDB = async () => {
-  try {
-    await MongoClient.connect(process.env.MONGODB_URL);
-    console.log("mongoDB connected.");
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
-};
+let client;
+let db;
 
-module.exports = connectDB;
+function connectDB() {
+  client = new MongoClient(process.env.MONGODB_URL);
+  return client
+    .connect()
+    .then(() => {
+      console.log("MongoDB connected successfully.");
+      db = client.db("justStudy_data");
+    })
+    .catch((err) => {
+      console.error("MongoDB connection error:", err.message);
+      process.exit(1);
+    });
+}
+
+function getDB() {
+  if (!db) {
+    throw new Error("Database not initialized. Call connectDB first.");
+  }
+  return db;
+}
+
+module.exports = { connectDB, getDB };
