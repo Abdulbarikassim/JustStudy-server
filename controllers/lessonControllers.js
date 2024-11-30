@@ -50,14 +50,14 @@ async function createOrder(req, res) {
 
 async function update(req, res) {
   const { id } = req.params;
-  const updatedData = req.body;
+  const { spaces } = req.body;
   try {
     const db = getDB();
     const results = await db
       .collection("lessons")
       .updateOne(
         { _id: new ObjectId(id) },
-        { $set: updatedData },
+        { $set: { spaces } },
         { safe: true, multi: false }
       );
 

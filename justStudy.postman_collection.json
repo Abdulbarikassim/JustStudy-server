@@ -1,0 +1,124 @@
+{
+  "info": {
+    "_postman_id": "140a1874-590a-4000-bc9e-711fb5c33dbe",
+    "name": "justStudy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "30735975"
+  },
+  "item": [
+    {
+      "name": "getAllLessons",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/lessons",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "lessons"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAlesson",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/lessons/67374b0c2c83411f45f24a6a",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "lessons", "67374b0c2c83411f45f24a6a"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create new order.",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"abdulrahman \", \n    \"city\": \"sharjah\",\n    \"spaces\": 4,\n    \"orderType\": \"home \"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/lessons/order/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "lessons", "order", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update a lesson",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Abdulbari mohamed kassim\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/orders/673dd5c0f9ccbdd630c8807f",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["api", "orders", "673dd5c0f9ccbdd630c8807f"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getImages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/images/basketball.jpeg",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5001",
+          "path": ["images", "basketball.jpeg"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
