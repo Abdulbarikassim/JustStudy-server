@@ -46,9 +46,9 @@ async function createOrder(req, res) {
   }
 }
 
-//update a lessons.
+//update a lessons space.
 
-async function update(req, res) {
+async function updateSpaces(req, res) {
   const { id } = req.params;
   const { spaces } = req.body;
   try {
@@ -67,4 +67,69 @@ async function update(req, res) {
     res.status(500).json({ error: "Failed to update the lesson" });
   }
 }
-module.exports = { getAllLessons, getALesson, createOrder, update };
+
+//update a lessons details.
+
+async function updateData(req, res) {
+  const { id } = req.params;
+  const updatedData = req.body;
+  try {
+    const db = getDB();
+
+    const results = await db
+      .collection("Order")
+      .updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updatedData },
+        { safe: true, multi: false }
+      );
+
+    res.send(results);
+  } catch (err) {
+    console.error("error updating the lesson", err.message);
+    res.status(500).json({ error: "Failed to update the lesson" });
+  }
+}
+
+// search lessons.
+
+async function searchALesson(req, res) {
+  const query = req.query.q?.trim();
+  console.log(query);
+
+  if (!query) {
+    return res.status(400).json({ error: "Search query is required" });
+  }
+
+  const db = getDB();
+  try {
+    const results = await db
+      .collection("lessons")
+      .find({
+        $or: [
+          { subject: { $regex: query, $options: "i" } },
+          { location: { $regex: query, $options: "i" } },
+          { price: parseFloat(query) },
+          { spaces: parseInt(query) },
+        ],
+      })
+      .toArray();
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No matching lessons found" });
+    }
+
+    res.json(results);
+  } catch (error) {
+    console.error("Error performing search:", error);
+    res.status(500).json({ message: "Error performing search" });
+  }
+}
+module.exports = {
+  getAllLessons,
+  getALesson,
+  createOrder,
+  updateSpaces,
+  updateData,
+  searchALesson,
+};
