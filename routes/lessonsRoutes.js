@@ -3,7 +3,9 @@ const {
   getAllLessons,
   getALesson,
   createOrder,
-  update,
+  updateSpaces,
+  updateData,
+  searchALesson,
 } = require("../controllers/lessonControllers");
 
 const router = express.Router();
@@ -12,18 +14,25 @@ router.get("/test", (req, res) => {
   res.send("test route is working ");
 });
 
-// get all lessons.
+// // get all lessons.
 router.get("/lessons", getAllLessons);
 
-//get a single lesson by id.
+// //get a single lesson by id.
 
 router.get("/lessons/:id", getALesson);
 
-// post a new order.
+// // post a new order.
 router.post("/lessons/order", createOrder);
 
-// update a lesson.
+// // update a lesson space.
 
-router.put("/lessons/:id", update);
+router.put("/lessons/:id", updateSpaces);
+
+// //update a order data.
+
+router.put("/lessons/order/:id", updateData);
+//search for lessons.
+
+router.get("/search", searchALesson);
 
 module.exports = router;
