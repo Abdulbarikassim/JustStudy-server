@@ -1,11 +1,12 @@
-require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 let client;
 let db;
 
 function connectDB() {
-  client = new MongoClient(process.env.MONGODB_URL);
+  client = new MongoClient(
+    "mongodb+srv://abdulbari:sPRUhaBnua18N5c8@cluster0.oaw3g.mongodb.net/"
+  );
   return client
     .connect()
     .then(() => {
