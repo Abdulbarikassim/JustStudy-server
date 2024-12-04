@@ -5,6 +5,7 @@ const { logger } = require("./routes/logger");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
+const { dir } = require("console");
 const fileDirectory =
   "/Users/abdulbari/Desktop/Uniwork/Fullstack Development/FrontEndcourseWorkProject/images";
 //express app and port for the server.
@@ -21,7 +22,7 @@ app.use(logger);
 app.use("/api", lessonsRoutes);
 //staic.
 app.use("/images", function (req, res, next) {
-  var filePath = path.join(fileDirectory, req.url);
+  var filePath = path.join(__dirname, "images", req.url);
   console.log(filePath);
 
   fs.stat(filePath, (err, fileInfo) => {
